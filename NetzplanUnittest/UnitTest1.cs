@@ -82,7 +82,23 @@ namespace NetzplanUnittest
         public void BSP1_Pufferberechnung()
         {
             Assert.Equal(0, np.Knoten["A"].GesamtPuffer);
-            Assert.Equal(0, np.Knoten["A"].GesamtPuffer);
+            Assert.Equal(0, np.Knoten["A"].FreierPuffer);
+
+            Assert.Equal(0, np.Knoten["B"].GesamtPuffer);
+            Assert.Equal(0, np.Knoten["B"].FreierPuffer);
+
+            Assert.Equal(3, np.Knoten["C"].GesamtPuffer);
+            Assert.Equal(3, np.Knoten["C"].FreierPuffer);
+
+            Assert.Equal(0, np.Knoten["D"].GesamtPuffer);
+            Assert.Equal(0, np.Knoten["D"].FreierPuffer);
+
+            Assert.Equal(0, np.Knoten["E"].GesamtPuffer);
+            Assert.Equal(0, np.Knoten["E"].FreierPuffer);
+
+            Assert.Equal(0, np.Knoten["F"].GesamtPuffer);
+            Assert.Equal(0, np.Knoten["F"].FreierPuffer);
+
         }
     }
 }

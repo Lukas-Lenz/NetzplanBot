@@ -202,6 +202,10 @@ namespace NetzplanBot
                 kleinsteDifferenz = Math.Min(kleinsteDifferenz, nachf.FAZ - knoten.FEZ);
             
             knoten.FreierPuffer = kleinsteDifferenz;
+
+            foreach (var nachf in knoten.Nachfolger)
+                PufferBerechnung(nachf);
+
         }
 
         /*
@@ -217,20 +221,6 @@ namespace NetzplanBot
                 
             }
         }
-        */
-        #endregion
-
-        #region Testfunktionen
-        // These functions exist for testing purposes - allowing data comparison without exposing internal classes
-        // no exception handling - don't use in production
-        /*
-        public int GetDauer(string projektabschnittName) { return _knoten[projektabschnittName].Dauer; }
-        public int GetFAZ(string projektabschnittName) { return _knoten[projektabschnittName].FAZ; }
-        public int GetFEZ(string projektabschnittName) { return _knoten[projektabschnittName].FEZ; }
-        public int GetSAZ(string projektabschnittName) { return _knoten[projektabschnittName].SAZ; }
-        public int GetSEZ(string projektabschnittName) { return _knoten[projektabschnittName].SEZ; }
-        public int GetGesamtPuffer(string projektabschnittName) { return _knoten[projektabschnittName].GesamtPuffer; }
-        public int GetFreierPuffer(string projektabschnittName) { return _knoten[projektabschnittName].FreierPuffer; }
         */
         #endregion
 
