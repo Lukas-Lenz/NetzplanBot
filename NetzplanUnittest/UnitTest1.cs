@@ -24,53 +24,65 @@ namespace NetzplanUnittest
         public void BSP1_Vorwaertsrechnung()
         {
             
-            Assert.Equal(0, np.GetFAZ("A"));
-            Assert.Equal(3, np.GetFEZ("A"));
+            Assert.Equal(0, np.Knoten["A"].FAZ);
+            Assert.Equal(3, np.Knoten["A"].FEZ);
 
-            Assert.Equal(3, np.GetFAZ("B"));
-            Assert.Equal(10, np.GetFEZ("B"));
+            Assert.Equal(3, np.Knoten["B"].FAZ);
+            Assert.Equal(10, np.Knoten["B"].FEZ);
 
-            Assert.Equal(3, np.GetFAZ("C"));
-            Assert.Equal(7, np.GetFEZ("C"));
+            Assert.Equal(3, np.Knoten["C"].FAZ);
+            Assert.Equal(7, np.Knoten["C"].FEZ);
 
-            Assert.Equal(10, np.GetFAZ("D"));
-            Assert.Equal(11, np.GetFEZ("D"));
+            Assert.Equal(10, np.Knoten["D"].FAZ);
+            Assert.Equal(11, np.Knoten["D"].FEZ);
 
-            Assert.Equal(11, np.GetFAZ("E"));
-            Assert.Equal(13, np.GetFEZ("E"));
+            Assert.Equal(11, np.Knoten["E"].FAZ);
+            Assert.Equal(13, np.Knoten["E"].FEZ);
 
-            Assert.Equal(13, np.GetFAZ("F"));
-            Assert.Equal(14, np.GetFEZ("F"));
+            Assert.Equal(13, np.Knoten["F"].FAZ);
+            Assert.Equal(14, np.Knoten["F"].FEZ);
+        }
+
+        [Fact]
+        public void BSP1_Dauer()
+        {
+            Assert.Equal(3, np.Knoten["A"].Dauer);
+            Assert.Equal(7, np.Knoten["B"].Dauer);
+            Assert.Equal(4, np.Knoten["C"].Dauer);
+            Assert.Equal(1, np.Knoten["D"].Dauer);
+            Assert.Equal(2, np.Knoten["E"].Dauer);
+            Assert.Equal(1, np.Knoten["F"].Dauer);
         }
 
         [Fact]
         public void BSP1_Rueckwaertsrechnung()
         {
-            Assert.Equal(13, np.GetSAZ("F"));
-            Assert.Equal(14, np.GetSEZ("F"));
+           
+            Assert.Equal(13, np.Knoten["F"].SAZ);
+            Assert.Equal(14, np.Knoten["F"].SEZ);
 
-            Assert.Equal(11, np.GetSAZ("E"));
-            Assert.Equal(13, np.GetSEZ("E"));
+            Assert.Equal(11, np.Knoten["E"].SAZ);
+            Assert.Equal(13, np.Knoten["E"].SEZ);
 
-            Assert.Equal(10, np.GetSAZ("D"));
-            Assert.Equal(11, np.GetSEZ("D"));
+            Assert.Equal(10, np.Knoten["D"].SAZ);
+            Assert.Equal(11, np.Knoten["D"].SEZ);
 
-            Assert.Equal(6, np.GetSAZ("C"));
-            Assert.Equal(10, np.GetSEZ("C"));
+            Assert.Equal(6, np.Knoten["C"].SAZ);
+            Assert.Equal(10, np.Knoten["C"].SEZ);
 
-            Assert.Equal(3, np.GetSAZ("B"));
-            Assert.Equal(10, np.GetSEZ("B"));
+            Assert.Equal(3, np.Knoten["B"].SAZ);
+            Assert.Equal(10, np.Knoten["B"].SEZ);
 
-            Assert.Equal(0, np.GetSAZ("A"));
-            Assert.Equal(3, np.GetSEZ("A"));
+            Assert.Equal(0, np.Knoten["A"].SAZ);
+            Assert.Equal(3, np.Knoten["A"].SEZ);
 
         }
 
         [Fact]
         public void BSP1_Pufferberechnung()
         {
-            Assert.Equal(0, np.GetGesamtPuffer("A"));
-            Assert.Equal(0, np.GetFreierPuffer("A"));
+            Assert.Equal(0, np.Knoten["A"].GesamtPuffer);
+            Assert.Equal(0, np.Knoten["A"].GesamtPuffer);
         }
     }
 }

@@ -14,11 +14,11 @@ namespace NetzplanBot
     public class Netzplan
     {
 
-        private Projektabschnitt _start;
+        internal Projektabschnitt _start;
 
         // nicht nötig, da Knoten untereinander durch Verweise verknüpft sind
         // nützlich für zB Testzugriff
-        private Dictionary<string, Projektabschnitt> _knoten;
+        internal Dictionary<string, Projektabschnitt> Knoten;
         
         public Netzplan(string eingabeStr)
         {
@@ -51,7 +51,7 @@ namespace NetzplanBot
         {
             int linecounter = 1;
 
-            _knoten = [];
+            Knoten = [];
 
             foreach(string zeile in datenZeilen)
             {
@@ -80,17 +80,17 @@ namespace NetzplanBot
                 else
                     foreach (string vorgaengarID in Data[3].Split(','))
                     {
-                        if (!_knoten.ContainsKey(vorgaengarID))
+                        if (!Knoten.ContainsKey(vorgaengarID))
                             throw new NetzplanUngueltigException("" +
                                 "Ungültiger Vorgänger", linecounter);
 
-                        Projektabschnitt vorgaenger = _knoten[vorgaengarID];
+                        Projektabschnitt vorgaenger = Knoten[vorgaengarID];
 
                         vorgaenger.Nachfolger.Add(neuerAbschnitt);
                         neuerAbschnitt.Vorgaenger.Add(vorgaenger);
                     }
 
-                _knoten[neuerAbschnitt.Name] = neuerAbschnitt;
+                Knoten[neuerAbschnitt.Name] = neuerAbschnitt;
 
                 linecounter++;
 
@@ -102,7 +102,7 @@ namespace NetzplanBot
 
             Projektabschnitt endknoten = null;
 
-            foreach (var (key, knoten) in _knoten)
+            foreach (var (key, knoten) in Knoten)
                 if (knoten.IstEndknoten())
                 {
                     if (endknoten == null)
@@ -172,10 +172,10 @@ namespace NetzplanBot
             }
             else
             {
-                // SEZ ist frühester FAZ der Vorgänger
+                // SEZ ist frühester SAZ der Vorgänger
                 int minstart = int.MaxValue;
                 foreach (var nachfolger in knoten.Nachfolger)
-                    minstart = Math.Min(minstart, knoten.FAZ);
+                    minstart = Math.Min(minstart, nachfolger.SAZ);
 
                 knoten.SEZ = minstart;
                 knoten.SAZ = knoten.SEZ - knoten.Dauer;
@@ -223,7 +223,7 @@ namespace NetzplanBot
         #region Testfunktionen
         // These functions exist for testing purposes - allowing data comparison without exposing internal classes
         // no exception handling - don't use in production
-
+        /*
         public int GetDauer(string projektabschnittName) { return _knoten[projektabschnittName].Dauer; }
         public int GetFAZ(string projektabschnittName) { return _knoten[projektabschnittName].FAZ; }
         public int GetFEZ(string projektabschnittName) { return _knoten[projektabschnittName].FEZ; }
@@ -231,7 +231,7 @@ namespace NetzplanBot
         public int GetSEZ(string projektabschnittName) { return _knoten[projektabschnittName].SEZ; }
         public int GetGesamtPuffer(string projektabschnittName) { return _knoten[projektabschnittName].GesamtPuffer; }
         public int GetFreierPuffer(string projektabschnittName) { return _knoten[projektabschnittName].FreierPuffer; }
-
+        */
         #endregion
 
     }

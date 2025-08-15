@@ -1,3 +1,7 @@
+using NetzplanBot;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("NetzplanUnittest")]
 /*
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +28,6 @@ app.MapControllers();
 app.Run();
 */
 
-using NetzplanBot;
 
 string beisp = "A;Planung;3;-\n" +
             "B;Softwareentwicklung;7;A\n" +
